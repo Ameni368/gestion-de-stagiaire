@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal de Stage - Tunisie Telecom</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(to bottom, #f44ea0, #8348db, #3e99e8);
+      color: white;
+      padding: 2rem 1.5rem;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .sidebar-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .nav-icon {
+      margin-right: 10px;
+    }
+
+    .powered-by {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+    }
+
+    .main-content {
+      margin-left: 280px;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    h1 {
+      color: #0056b3;
+    }
+
+    label, input, textarea, button {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #0056b3;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .entry {
+      background-color: white;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <form name="f" action="stajj.php" method="post">
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="images/TT-Logo.png" alt="Tunisie Telecom Logo" class="logo">
+        <div>
+          <div class="sidebar-title">Tunisie Telecom</div>
+          <div class="sidebar-subtitle">Journal de Stage</div>
+        </div>
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="staj.html" class="nav-link active"><i class="fas fa-book nav-icon"></i> Journal</a></li>
+        <li><a href="jareb.html" class="nav-link"><i class="fas fa-home nav-icon"></i> Accueil</a></li>
+        <li><a href="regle.html" class="nav-link"><i class="fas fa-info-circle nav-icon"></i> Règles</a></li>
+        <li><a href="login.html" class="nav-link"><i class="fas fa-sign-out-alt nav-icon"></i> Déconnexion</a></li>
+      </ul>
+
+      <div class="powered-by">
+        Powered by <strong>Tunisie Telecom</strong><br>
+        <img src="images/TT-Logo.png" alt="Logo" style="height: 20px; margin-top: 5px;">
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>📘 Journal de Stage</h1>
+
+      <label for="date">Date :</label>
+      <input type="date" id="date" name="date_jour">
+
+      <label for="taches">Tâches réalisées :</label>
+      <textarea id="taches" placeholder="Décrivez ce que vous avez fait aujourd'hui..." name="taches"></textarea>
+
+<button type="submit">Ajouter</button>
+
+      <h2>📝 Vos entrées :</h2>
+      <div id="journal"></div>
+    </main>
+  </div>
+  </form>
+</body>
+</html>

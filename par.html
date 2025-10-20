@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres - Tunisie Telecom</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+    .app-container {
+      display: flex;
+    }
+    aside.sidebar {
+      width: 280px;
+      background: linear-gradient(to bottom, #f44ea0, #8348db, #3e99e8);
+      color: white;
+      padding: 2rem 1.5rem;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .sidebar-header img {
+      width: 50px;
+      margin-right: 10px;
+    }
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+    .nav-link:hover, .nav-link.active {
+      background-color: rgba(255,255,255,0.2);
+    }
+    .nav-icon {
+      margin-right: 10px;
+    }
+    main.main-content {
+      margin-left: 280px;
+      padding: 2rem;
+      width: 100%;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      color: #0056b3;
+      margin-bottom: 1rem;
+    }
+    .settings-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .settings-section label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+    .settings-section input,
+    .settings-section select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 0.3rem;
+    }
+    .settings-section button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.5rem;
+      background-color: #0056b3;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .settings-section button:hover {
+      background-color: #004299;
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="images/TT-Logo.png" alt="Logo">
+      <div>
+        <div class="sidebar-title">Tunisie Telecom</div>
+        <div class="sidebar-subtitle">Gestion des Stagiaires</div>
+      </div>
+    </div>
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="jareb.html"><i class="fas fa-home nav-icon"></i> Accueille</a></li>
+      <li><a class="nav-link active" href="par.html"><i class="fas fa-cog nav-icon"></i> Paramètres</a></li>
+      <li><a class="nav-link" href="login.html" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?');">
+        <i class="fas fa-sign-out-alt nav-icon"></i> Déconnexion</a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <h1 class="section-title"><i class="fas fa-cog"></i> Paramètres</h1>
+
+
+
+    <div class="settings-section">
+      <h2>Préférences</h2>
+      <label>Langue</label>
+      <select id="language">
+        <option value="fr">Français</option>
+        <option value="ar">Arabe</option>
+      </select>
+
+      <label>Mode</label>
+      <select id="theme-mode">
+        <option value="light">Clair</option>
+        <option value="dark">Sombre</option>
+      </select>
+
+      <button onclick="applyPreferences()">Appliquer</button>
+    </div>
+
+    <div class="settings-section">
+      <h2>Sécurité</h2>
+      <label>Déconnexion auto (minutes)</label>
+      <input type="number" id="autoLogout" placeholder="15">
+      <button onclick="handleAutoLogout()">OK</button>
+    </div>
+  </main>
+</div>
+
+<script>
+function handleAutoLogout() {
+    const minutes = document.getElementById("autoLogout").value;
+    const timeInMs = parseInt(minutes) * 60 * 1000;
+
+    if (minutes && minutes > 0) {
+      alert(`Déconnexion dans ${minutes} minute(s).`);
+
+      setTimeout(() => {
+        alert("⏰ Temps écoulé ! Déconnexion automatique.");
+        // Tu peux rediriger l'utilisateur vers la page de login ici :
+        window.location.href = "login.html";
+      }, timeInMs);
+
+    } else {
+      alert("❌ Veuillez entrer une durée valide.");
+    }
+  }
+
+  const translations = {
+    fr: {
+      title: "Paramètres",
+      userSection: "Compte Utilisateur",
+      name: "Nom Complet",
+      email: "Email",
+      password: "Mot de passe",
+      save: "Enregistrer",
+      preferences: "Préférences",
+      language: "Langue",
+      mode: "Mode",
+      apply: "Appliquer",
+      security: "Sécurité",
+      logout: "Déconnexion auto (minutes)",
+      history: "Historique des connexions",
+      see: "Voir",
+      alertSaved: "Compte mis à jour",
+      alertHistory: "Historique non disponible en mode démo."
+    },
+    ar: {
+      title: "الإعدادات",
+      userSection: "حساب المستخدم",
+      name: "الاسم الكامل",
+      email: "البريد الإلكتروني",
+      password: "كلمة المرور",
+      save: "حفظ",
+      preferences: "التفضيلات",
+      language: "اللغة",
+      mode: "الوضع",
+      apply: "تطبيق",
+      security: "الأمان",
+      logout: "تسجيل الخروج التلقائي (بالدقائق)",
+      history: "سجل الدخول",
+      see: "عرض",
+      alertSaved: "تم تحديث الحساب",
+      alertHistory: "السجل غير متوفر في الوضع التجريبي."
+    }
+  };
+
+  function applyPreferences() {
+    const lang = document.getElementById("language").value;
+    const theme = document.getElementById("theme-mode").value;
+    const t = translations[lang];
+
+    // Modifier les textes selon la langue
+    document.querySelector(".section-title").innerHTML = `<i class="fas fa-cog"></i> ${t.title}`;
+    document.querySelectorAll(".settings-section")[0].querySelector("h2").textContent = t.userSection;
+    document.querySelectorAll(".settings-section")[1].querySelector("h2").textContent = t.preferences;
+    document.querySelectorAll(".settings-section")[2].querySelector("h2").textContent = t.security;
+
+    const labels = document.querySelectorAll(".settings-section label");
+    labels[0].textContent = t.name;
+    labels[1].textContent = t.email;
+    labels[2].textContent = t.password;
+    labels[3].textContent = t.language;
+    labels[4].textContent = t.mode;
+    labels[5].textContent = t.logout;
+    labels[6].textContent = t.history;
+
+    const buttons = document.querySelectorAll(".settings-section button");
+    buttons[0].textContent = t.save;
+    buttons[1].textContent = t.apply;
+    buttons[2].textContent = t.see;
+
+    // Changer le thème
+    if (theme === "dark") {
+      document.body.style.backgroundColor = "#1c1c1c";
+      document.body.style.color = "#f1f1f1";
+    } else {
+      document.body.style.backgroundColor = "#f5f7fa";
+      document.body.style.color = "#333";
+    }
+
+    alert(`${t.apply} :\n${t.language}: ${lang === "fr" ? "Français" : "العربية"}\n${t.mode}: ${theme === "dark" ? "Sombre" : "Clair"}`);
+  }
+
+</script>
+</body>
+</html>

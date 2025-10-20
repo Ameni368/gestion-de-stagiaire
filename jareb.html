@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunisie Telecom - Gestion des Stagiaires</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #e9ecef;
+            --accent-color: #ff6b00;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #f44ea0, #8348db, #3e99e8);
+            color: white;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100%;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .sidebar-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 0.2rem;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .nav-item {
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-icon {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        
+        /* Dashboard Card Styles */
+        .dashboard-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        .card-body {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Features Section */
+        .features-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 86, 179, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .feature-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 250px;
+            }
+            
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1000;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block !important;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Utility Classes */
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        .powered-by {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .powered-by img {
+            height: 20px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/TT-Logo.png" alt="Tunisie Telecom Logo" class="logo">
+                <div>
+                    <div class="sidebar-title">Tunisie Telecom</div>
+                    <div class="sidebar-subtitle">Gestion des Stagiaires</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="jareb.html" class="nav-link active">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span>Accueille</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="support.html" class="nav-link">
+                        <i class="fas fa-user-tie nav-icon"></i>
+                        <span>Encadrement</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="par.html" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link" onclick="return confirmLogout();">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <span>Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="powered-by" style="margin-top: 100%;">
+                Powered by <strong>Tunisie Telecom</strong> 
+                <img src="TT-Logo.png" alt="Power BI">
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Gestion des Stagiaires</h1>
+            </div>
+            
+            <!-- Dashboard Overview -->
+            <section class="dashboard-section">
+                <h2 class="section-title"><i class="fas fa-chart-pie"></i> Aperçu</h2>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h3 class="card-title"><a href="staj.html" style="color: black;">Journal</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <p>24 stagiaires actuellement en formation</p>
+                            <p class="text-primary" style="font-weight: 600; margin-top: 0.5rem;">+3 ce mois</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background-color: var(--success-color);">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3 class="card-title"><a href="regle.html" style="color: black;">Informations</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Découvrir nous régle</p>
+                            <p style="color: var(--success-color); font-weight: 600; margin-top: 0.5rem;">obligatoire</p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background-color: var(--warning-color);">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div><a href="contactezz.html" style="color: black;">
+                            <h3 class="card-title">Contactez nous</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <p>rédiger votre réponse</p>
+                            <p style="color: var(--warning-color); font-weight: 600; margin-top: 0.5rem;">+5 probléme ce mois</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Features Section -->
+            <section class="dashboard-section">
+                <h2 class="section-title"><i class="fas fa-star"></i> Fonctionnalités</h2>
+                
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Tableau de Bord Principal</h3>
+                            <p>Permet de gérer les informations personnelles, les dates de stage et les départements d'affectation des stagiaires avec une interface intuitive et centralisée.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Module d'Encadrement</h3>
+                            <p>Attribution des encadrants et suivi des missions confiées à chaque stagiaire avec système de notifications et évaluations périodiques.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Analytics & Reporting</h3>
+                            <p>Tableaux de bord interactifs : Visualisation des données via Power BI pour analyser la répartition, les performances, et optimiser les ressources humaines.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Gestion Centralisée</h3>
+                            <p>Organisation efficace avec centralisation des données pour une gestion fluide et structurée de tous les aspects du programme de stages.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Sécurité des Données</h3>
+                            <p>Confidentialité garantie : Les données affichées sont fictives et respectent la politique de confidentialité stricte de Tunisie Telecom.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            
+        </main>
+    </div>
+    
+<script>
+  function confirmLogout() {
+    const confirmed = confirm("Voulez-vous vraiment vous déconnecter ?");
+    if (confirmed) {
+      window.location.href = "login.html"; // Redirection
+    }
+    return false; // Empêche le lien d'agir sans confirmation
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Règles de Stage - Tunisie Telecom</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <!-- Si tu as déjà le style général dans ce fichier -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #0056b3;
+            margin-bottom: 1.5rem;
+        }
+
+        .rules-list {
+            background: #fff;
+            padding: 6rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .rules-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* Sidebar copied from jareb.html */
+        .app-container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #f44ea0, #8348db, #3e99e8);
+            color: white;
+            padding: 2rem 1.5rem;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+        }
+
+        .nav-item {
+            margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="images/TT-Logo.png" alt="Logo" class="logo">
+            <div>
+                <div class="sidebar-title">Tunisie Telecom</div>
+                <div class="sidebar-subtitle">Gestion des Stagiaires</div>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="jareb.html" class="nav-link">
+                    <i class="fas fa-home"></i> Accueille
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="support.html" class="nav-link">
+                    <i class="fas fa-user-tie"></i> Encadrement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="par.html" class="nav-link">
+                    <i class="fas fa-cog"></i> Paramètres
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="regle.html" class="nav-link active">
+                    <i class="fas fa-list"></i> Règles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="login.html" class="nav-link" onclick="return confirmLogout();">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+        <h1 class="section-title">Règles de Stage</h1>
+        <div class="rules-list">
+    <ul>
+        <li>🕘 La ponctualité est obligatoire. Aucun retard ne sera toléré.</li>
+        <li>📆 La présence quotidienne est exigée, sauf en cas d'absence justifiée.</li>
+        <li>🎓 Le stagiaire doit respecter les consignes de son encadrant.</li>
+        <li>💻 L’utilisation des outils informatiques doit être professionnelle.</li>
+        <li>📱 L’usage du téléphone est interdit pendant les heures de travail.</li>
+        <li>🤝 Respect des collègues, de l’environnement de travail et des règles de sécurité.</li>
+        <li>📋 Remplissage du rapport de stage chaque semaine.</li>
+    </ul>
+
+    <div style="text-align: right; margin-top: -2rem;">
+        <img src="images/TT-analyse.gif" alt="Logo Tunisie Telecom" style="height: 90px;">
+    </div>
+</div>
+
+    </main>
+</div>
+
+<script>
+  function confirmLogout() {
+    return confirm("Voulez-vous vraiment vous déconnecter ?");
+  }
+</script>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
